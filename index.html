@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kesitos - Envíos a todo el Perú</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary: #d40000;
+      --primary-dark: #a00000;
+      --light: #ffffff;
+      --bg: #f9f9f9;
+      --text: #222222;
+      --muted: #666666;
+      --border: #e4e4e4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* HEADER / NAV */
+    header {
+      background: var(--light);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--light);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: #ffe7e7;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #fff5f5, #ffeaea);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--light);
+      border-radius: 999px;
+      padding: 0.15rem 0.7rem;
+      font-size: 0.75rem;
+      color: var(--primary-dark);
+      border: 1px solid #ffd6d6;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary-dark);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 26rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-taglist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      font-size: 0.75rem;
+    }
+
+    .tag {
+      background: var(--light);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      border: 1px solid #ffdede;
+      color: var(--muted);
+    }
+
+    .hero-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border: 1px solid #ffd6d6;
+    }
+
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      color: var(--primary-dark);
+    }
+
+    .hero-card form {
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #ffd1d1;
+      border-color: var(--primary);
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 500px) {
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 1.5rem;
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+      color: var(--primary-dark);
+    }
+
+    section p.section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Servicios */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: #ffeeee;
+      color: var(--primary-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Seguimiento */
+    .track-box {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .track-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .track-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .track-form input {
+      flex: 1 1 200px;
+    }
+
+    /* Contacto */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+    }
+
+    details {
+      background: var(--light);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 0.7rem 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    details p {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1b1b1b;
+      color: #dddddd;
+      padding: 1.5rem 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner a {
+      color: #ffd4d4;
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      text-decoration: underline;
+    }
+
+    /* WhatsApp botón flotante */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      z-index: 100;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-mark">K</div>
+      <div class="logo-text">Kesitos</div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#seguimiento">Seguimiento</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#faq">Preguntas</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="#seguimiento" class="btn btn-outline">Rastrear envío</a>
+      <a href="#contacto" class="btn btn-primary">Registrar envío</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        ● Envíos seguros y rápidos
+      </div>
+      <h1 class="hero-title">Envíos a todo el Perú con Kesitos</h1>
+      <p class="hero-subtitle">
+        Realiza tus envíos de sobres y paquetes a nivel nacional con cobertura en todo el país, seguimiento en línea y atención cercana.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">Registrar envío</a>
+        <a href="#seguimiento" class="btn btn-outline">Rastrear envío</a>
+      </div>
+      <p class="hero-note">
+        Atención en agencias y envíos empresariales según disponibilidad de rutas.
+      </p>
+      <div class="hero-taglist">
+        <span class="tag">Cobertura nacional</span>
+        <span class="tag">Tracking en tiempo real</span>
+        <span class="tag">Atención personalizada</span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <h2>Cotiza tu envío ahora</h2>
+      <form>
+        <div class="two-cols">
+          <div>
+            <label>Origen</label>
+            <select>
+              <option value="">Selecciona ciudad de origen</option>
+              <option>Trujillo</option>
+              <option>Lima</option>
+              <option>Chiclayo</option>
+            </select>
+          </div>
+          <div>
+            <label>Destino</label>
+            <select>
+              <option value="">Selecciona ciudad de destino</option>
+              <option>Arequipa</option>
+              <option>Piura</option>
+              <option>Cusco</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two-cols">
+          <div>
+            <label>Peso estimado (kg)</label>
+            <input type="number" min="0" step="0.1" placeholder="Ej. 2.5">
+          </div>
+          <div>
+            <label>Tipo de envío</label>
+            <select>
+              <option value="">Selecciona</option>
+              <option>Documento</option>
+              <option>Paquete pequeño</option>
+              <option>Carga</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" style="width:100%; margin-top:0.4rem;">
+          Calcular tarifa
+        </button>
+        <p style="margin-top:0.4rem; font-size:0.75rem; color:var(--muted);">
+          *Simulación referencial. La tarifa final se confirma en agencia.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <h2>Servicios de envío</h2>
+  <p class="section-subtitle">
+    Kesitos ofrece soluciones para personas y empresas con diferentes tipos de servicio según la urgencia y el volumen del envío.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="pill">Envío regular</span>
+      <h3>Envíos nacionales</h3>
+      <p>Envía sobres y encomiendas a las principales ciudades del Perú con tiempos estándar y tarifas accesibles.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Rápido</span>
+      <h3>Servicio urgente</h3>
+      <p>Opción para envíos prioritarios en rutas seleccionadas, ideal para documentos o paquetes que no pueden esperar.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Empresarial</span>
+      <h3>Cuenta para empresas</h3>
+      <p>Gestión centralizada de envíos, facturación y atención dedicada para negocios con alto volumen de envíos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUIMIENTO -->
+<section id="seguimiento">
+  <h2>Seguimiento de tu envío</h2>
+  <p class="section-subtitle">
+    Ingresa tu código de tracking para conocer el estado actual de tu envío con Kesitos.
+  </p>
+
+  <div class="track-box">
+    <div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.5rem;">
+        Escribe el código que aparece en tu comprobante y presiona “Rastrear”. Esta sección es demostrativa, puedes conectarla a tu sistema más adelante.
+      </p>
+      <div class="track-form">
+        <input type="text" placeholder="Ej. KES-123456789">
+        <button type="button" class="btn btn-primary">Rastrear</button>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.85rem; color:var(--muted);">
+        Mantén informado a tu cliente compartiendo el código de seguimiento. Podrás ver eventos como recepción en agencia, en ruta y entrega final.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <h2>Contáctanos</h2>
+  <p class="section-subtitle">
+    Completa el formulario y el equipo de Kesitos se pondrá en contacto contigo para ayudarte con tus envíos.
+  </p>
+
+  <div class="contact-grid">
+    <div>
+      <form>
+        <div class="two-cols">
+          <div>
+            <label>Nombre completo</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div>
+            <label>Correo electrónico</label>
+            <input type="email" placeholder="tu@correo.com">
+          </div>
+        </div>
+
+        <div class="two-cols" style="margin-top:0.5rem;">
+          <div>
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" placeholder="9XXXXXXXX">
+          </div>
+          <div>
+            <label>Tipo de consulta</label>
+            <select>
+              <option value="">Selecciona</option>
+              <option>Información de tarifas</option>
+              <option>Cuenta empresarial</option>
+              <option>Estado de envío</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:0.5rem;">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntanos en qué podemos ayudarte"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary" style="margin-top:0.7rem;">
+          Enviar mensaje
+        </button>
+        <p style="margin-top:0.3rem; font-size:0.75rem; color:var(--muted);">
+          Este formulario es demostrativo. Para hacerlo funcional necesitas un backend (PHP, Node, etc.) o un servicio de formularios. [MDN recomienda conectar el formulario a un servidor para procesar los datos]. 
+        </p>
+      </form>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3>Datos de contacto</h3>
+        <p style="font-size:0.85rem; color:var(--muted); margin-top:0.3rem;">
+          Teléfono: (01) 000 0000<br>
+          WhatsApp: 9 999 999 99<br>
+          Correo: contacto@kesitos.pe
+        </p>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:0.6rem;">
+          Horario de atención:<br>
+          Lunes a sábado de 8:00 a.m. a 8:00 p.m.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h2>Preguntas frecuentes</h2>
+  <p class="section-subtitle">
+    Resolvemos algunas dudas comunes sobre los envíos con Kesitos.
+  </p>
+
+  <div class="faq">
+    <details>
+      <summary>¿Cuánto demora un envío nacional?</summary>
+      <p>Depende del origen y destino. En rutas principales suele demorar de 1 a 3 días hábiles. En zonas alejadas el tiempo puede ser mayor.</p>
+    </details>
+    <details>
+      <summary>¿Qué productos no se pueden enviar?</summary>
+      <p>No se pueden enviar sustancias ilegales, armas, dinero en efectivo u otros artículos restringidos por las normas de transporte y seguridad.</p>
+    </details>
+    <details>
+      <summary>¿Cómo sé que mi paquete llegó?</summary>
+      <p>Con el código de tracking podrás ver el estado “Entregado” y la fecha. Además, puedes coordinar una alerta por correo o WhatsApp.</p>
+    </details>
+    <details>
+      <summary>¿Ofrecen servicio para empresas?</summary>
+      <p>Sí, contamos con cuentas empresariales con tarifas preferenciales y facturación mensual para negocios con alto volumen de envíos.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> Kesitos. Envíos a todo el Perú.</div>
+    <div>Esta es una página de ejemplo para uso académico / demostrativo.</div>
+  </div>
+</footer>
+
+<!-- Botón flotante de WhatsApp -->
+<a
+  class="whatsapp-btn"
+  href="https://wa.me/51900000000?text=Hola%20Kesitos,%20quiero%20información%20sobre%20envíos"
+  target="_blank"
+  aria-label="Chatear por WhatsApp"
+>
+  ☎
+</a>
+
+<script>
+  // Año automático en el footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
